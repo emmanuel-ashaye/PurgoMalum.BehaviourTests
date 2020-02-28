@@ -59,7 +59,7 @@ I want to be a ble to filter such content
       And I specify the response type as 'json'
       And I specify profain word replacement as '_~!-=|*,'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
-     Then the output text is 'Invalid User Replacement Characters'
+     Then the output text is 'Invalid User Replacement Text'
 
   Scenario: Chech custom replacement character
     Given I call the word filter endpoint
