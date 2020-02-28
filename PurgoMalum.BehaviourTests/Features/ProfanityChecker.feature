@@ -1,7 +1,8 @@
-﻿Feature: Profanity checker
-  In order to avoid displaying content of profanity, obscenity and other unwanted text
-  As a content provider
-  I want to be able to check if text containes profanity
+﻿@Profanity_Checker
+Feature: Profanity checker
+    In order to avoid displaying content of profanity, obscenity and other unwanted text
+    As a content provider
+    I want to be able to check if text containes profanity
 	
   Scenario: Check if sentence contains profanity
     Given I call the word filter endpoint

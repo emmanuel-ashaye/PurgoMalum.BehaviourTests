@@ -1,9 +1,9 @@
-﻿Feature: Set fill text
+﻿@Fill_Text
+Feature: Set fill text
 	In order to avoid displaying content of profanity, obscenity and other unwanted text
 	As a content provider
 	I want to set the text to replace profain content
 	
-@mytag
   Scenario: Check custom replacement text
     Given I call the word filter endpoint
       And I specify the response type as 'json'

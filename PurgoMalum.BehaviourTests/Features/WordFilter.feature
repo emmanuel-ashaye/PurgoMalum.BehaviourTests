@@ -1,4 +1,5 @@
-﻿Feature: WordFilter
+﻿@Word_Filter
+Feature: WordFilter
 In order to avoid displaying content of profanity, obscenity and other unwanted text
 As a content provider
 I want to be able to filter such content

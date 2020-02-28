@@ -1,9 +1,9 @@
-﻿Feature: Add black list
+﻿@Add
+Feature: Add black list
 	In order to avoid displaying content of profanity, obscenity and other unwanted text
 	As a content provider
 	I want to be able to add a black list of words to filter
-	
-@Add
+
   Scenario: Check add to black list
     Given I call the word filter endpoint
       And I specify the response type as 'json'

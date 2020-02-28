@@ -1,9 +1,9 @@
-﻿Feature: Set fill character
+﻿@Fill_Character
+Feature: Set fill character
 	In order to avoid displaying content of profanity, obscenity and other unwanted text
 	As a content provider
 	I want to set the character to replace profain content
 	
-@Fill_Character
   Scenario: Check custom replacement character
     Given I call the word filter endpoint
       And I specify the response type as 'json'
