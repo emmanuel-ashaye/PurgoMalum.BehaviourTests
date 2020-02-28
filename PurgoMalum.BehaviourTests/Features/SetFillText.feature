@@ -24,3 +24,10 @@
       And I specify profain word replacement as '_~!-=|*,'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
      Then the output text is 'Invalid User Replacement Text'
+
+  Scenario: Check custom replacement text limit
+    Given I call the word filter endpoint
+      And I specify the response type as 'json'
+      And I specify profain word replacement as 'supercalifragilisticexpialidocious'
+     When I enter 'It's been a bit of a shit show, no thanks to that bitch'
+     Then the output text is 'User Replacement Text Exceeds Limit of 20 Characters.'
