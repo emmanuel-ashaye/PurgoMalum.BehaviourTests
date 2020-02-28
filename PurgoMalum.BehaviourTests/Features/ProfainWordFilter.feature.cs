@@ -475,7 +475,7 @@ namespace PurgoMalum.BehaviourTests.Features
      testRunner.When("I enter \'It\'s been a bit of a shit show, no thanks to that bitch\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 62
-     testRunner.Then("the output text is \'Invalid User Replacement Characters\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.Then("the output text is \'Invalid User Replacement Text\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
