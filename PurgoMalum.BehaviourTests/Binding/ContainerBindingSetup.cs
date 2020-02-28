@@ -1,81 +1,42 @@
 ﻿using System;
-
+using BoDi;
+using Microsoft.Extensions.Configuration;
+using PurgoMalum.ServiceClient;
 using TechTalk.SpecFlow;
 
-namespace PurgoMalum.BehaviourTests.Binding
+namespace AlphaFX.BankValidation.BehaviourTests.Binding
 {
     [Binding]
-    public class ContainerBindingSetup
+    public class ContainerSetupBindings
     {
-        [BeforeStep]
-        public void BeforeStep()
+
+        private string _baseUrl;
+
+        private readonly IConfiguration _configuration;
+
+        private readonly IObjectContainer _container;
+
+        public ContainerSetupBindings(IObjectContainer container)
         {
-            // TODO: implement logic that has to run before each scenario step
-            // For storing and retrieving scenario-specific data, 
-            // the instance fields of the class or the
-            //     ScenarioContext.Current
-            // collection can be used.
-            // For storing and retrieving feature-specific data, the 
-            //     FeatureContext.Current
-            // collection can be used.
-            // Use the attribute overload to specify tags. If tags are specified, the event 
-            // handler will be executed only if any of the tags are specified for the 
-            // feature or the scenario.
-            //     [BeforeStep("mytag")]
+            _container = container;
+            _configuration = GetConfiguration();
         }
 
-        [AfterStep]
-        public void AfterStep()
+        private static IConfiguration GetConfiguration()
         {
-            // TODO: implement logic that has to run after each scenario step
-        }
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json");
 
-        [BeforeScenarioBlock]
-        public void BeforeScenarioBlock()
-        {
-            // TODO: implement logic that has to run before each scenario block (given-when-then)
-        }
-
-        [AfterScenarioBlock]
-        public void AfterScenarioBlock()
-        {
-            // TODO: implement logic that has to run after each scenario block (given-when-then)
+            return builder.Build();
         }
 
         [BeforeScenario]
-        public void BeforeScenario()
+        public void SetupContaienerBindings()
         {
-            // TODO: implement logic that has to run before executing each scenario
-        }
+            _baseUrl = _configuration["ApplicationBaseUrl"];
 
-        [AfterScenario]
-        public void AfterScenario()
-        {
-            // TODO: implement logic that has to run after executing each scenario
-        }
-
-        [BeforeFeature]
-        public static void BeforeFeature()
-        {
-            // TODO: implement logic that has to run before executing each feature
-        }
-
-        [AfterFeature]
-        public static void AfterFeature()
-        {
-            // TODO: implement logic that has to run after executing each feature
-        }
-
-        [BeforeTestRun]
-        public static void BeforeTestRun()
-        {
-            // TODO: implement logic that has to run before the entire test run
-        }
-
-        [AfterTestRun]
-        public static void AfterTestRun()
-        {
-            // TODO: implement logic that has to run after the entire test run
+            ISearchService _searchService = new SearchService(_baseUrl);
+            _container.RegisterInstanceAs(_searchService);
         }
     }
 }

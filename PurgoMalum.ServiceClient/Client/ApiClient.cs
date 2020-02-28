@@ -9,15 +9,13 @@ namespace PurgoMalum.ServiceClient
     using System.Web;
     using Newtonsoft.Json;
     using RestSharp;
+    using System.Xml;
 
     /// <summary>
     /// API client is mainly responible for making the HTTP call to the API backend.
     /// </summary>
     public class ApiClient
     {
-        private readonly Dictionary<string, string> _defaultHeaderMap = new Dictionary<string, string>();
-
-        private string Token { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class.
@@ -26,9 +24,11 @@ namespace PurgoMalum.ServiceClient
         public ApiClient(string basePath = "https://localhost", int timeout = 5000)
         {
             BasePath = basePath;
-            RestClient = new RestClient(BasePath);
-            RestClient.RemoteCertificateValidationCallback = (x, y, z, z2) => true;
-            RestClient.Timeout = timeout;
+            RestClient = new RestClient(BasePath)
+            {
+                RemoteCertificateValidationCallback = (x, y, z, z2) => true,
+                Timeout = timeout
+            };
         }
 
         /// <summary>
@@ -46,10 +46,10 @@ namespace PurgoMalum.ServiceClient
         /// <summary>
         /// Gets the default header.
         /// </summary>
-        public Dictionary<string, string> DefaultHeader
+        public Dictionary<string, string> DefaultHeader { get; } = new Dictionary<string, string>()
         {
-            get { return _defaultHeaderMap; }
-        }
+            { "Accept", "text/plain,application/json,application/xml" }
+        };
 
         /// <summary>
         /// Makes the HTTP request (Sync).
@@ -63,14 +63,14 @@ namespace PurgoMalum.ServiceClient
         /// <param name="fileParams">File parameters.</param>
         /// <param name="authSettings">Authentication settings.</param>
         /// <returns>Object</returns>
-        public object CallApi(string path, RestSharp.Method method, Dictionary<string, string> queryParams, string postBody,
+        public object CallApi(string path, Method method, Dictionary<string, string> queryParams, string postBody,
             Dictionary<string, string> headerParams, Dictionary<string, string> formParams,
             Dictionary<string, FileParameter> fileParams)
         {
             var request = new RestRequest(path, method);
 
             // add default header, if any
-            foreach (var defaultHeader in _defaultHeaderMap)
+            foreach (var defaultHeader in DefaultHeader)
                 request.AddHeader(defaultHeader.Key, defaultHeader.Value);
 
             // add header parameter, if any
@@ -104,7 +104,7 @@ namespace PurgoMalum.ServiceClient
         /// <returns></returns>
         public void AddDefaultHeader(string key, string value)
         {
-            _defaultHeaderMap.Add(key, value);
+            DefaultHeader.Add(key, value);
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace PurgoMalum.ServiceClient
                 // For example: 2009-06-15T13:45:30.0000000
                 return ((DateTime)obj).ToString(Configuration.DateTimeFormat);
             else if (obj is List<string>)
-                return String.Join(",", (obj as List<string>).ToArray());
+                return string.Join(",", (obj as List<string>).ToArray());
             else
                 return Convert.ToString(obj);
         }
@@ -154,7 +154,7 @@ namespace PurgoMalum.ServiceClient
 
             if (type == typeof(Stream))
             {
-                var filePath = String.IsNullOrEmpty(Configuration.TempFolderPath)
+                var filePath = string.IsNullOrEmpty(Configuration.TempFolderPath)
                     ? Path.GetTempPath()
                     : Configuration.TempFolderPath;
 
@@ -183,7 +183,7 @@ namespace PurgoMalum.ServiceClient
 
             if (type == typeof(string)) // return primitive type
             {
-                if (content != String.Empty)
+                if (content != string.Empty)
                     return JsonConvert.DeserializeObject(content, type);
                 return content;
             }
@@ -196,6 +196,20 @@ namespace PurgoMalum.ServiceClient
             catch (IOException e)
             {
                 throw new ApiException(500, e.Message, content);
+            }
+        }
+
+        public string SerializeXml(string obj)
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(obj);
+                return doc.InnerText;
+            }
+            catch (Exception e)
+            {
+                throw new ApiException(500, e.Message);
             }
         }
 
@@ -220,22 +234,6 @@ namespace PurgoMalum.ServiceClient
         }
 
         /// <summary>
-        /// Get the API key with prefix.
-        /// </summary>
-        /// <param name="apiKeyIdentifier">API key identifier (authentication scheme).</param>
-        /// <returns>API key with prefix.</returns>
-        public string GetApiKeyWithPrefix(string apiKeyIdentifier)
-        {
-            var apiKeyValue = "";
-            Configuration.ApiKey.TryGetValue(apiKeyIdentifier, out apiKeyValue);
-            var apiKeyPrefix = "";
-            if (Configuration.ApiKeyPrefix.TryGetValue(apiKeyIdentifier, out apiKeyPrefix))
-                return apiKeyPrefix + " " + apiKeyValue;
-            else
-                return apiKeyValue;
-        }
-
-        /// <summary>
         /// Encode string in base64 format.
         /// </summary>
         /// <param name="text">String to be encoded.</param>
@@ -243,7 +241,7 @@ namespace PurgoMalum.ServiceClient
         public static string Base64Encode(string text)
         {
             var textByte = System.Text.Encoding.UTF8.GetBytes(text);
-            return System.Convert.ToBase64String(textByte);
+            return Convert.ToBase64String(textByte);
         }
 
         /// <summary>
@@ -255,21 +253,6 @@ namespace PurgoMalum.ServiceClient
         public static object ConvertType(object fromObject, Type toObject)
         {
             return Convert.ChangeType(fromObject, toObject);
-        }
-
-        public T CastObjectFromResponseData<T>(object obj)
-        {
-            if (obj == null)
-                throw new ApiException("Response data not received or response has different model");
-            var json = JsonConvert.SerializeObject(obj);
-            try
-            {
-                return JsonConvert.DeserializeObject<T>(json);
-            }
-            catch (Exception)
-            {
-                throw new ApiException(json);
-            }
         }
     }
 }

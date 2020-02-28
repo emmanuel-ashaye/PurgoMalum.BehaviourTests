@@ -1,0 +1,11 @@
+/.vs
+*/obj/ 
+*/bin/ 
+bin/ 
+obj/
+DockerResults/
+TestResults/
+*.user 
+*/*.user 
+.DS_Store 
+*.feature.cs

@@ -25,30 +25,6 @@
         /// <value>The API client.</value>
         public static ApiClient DefaultApiClient = new ApiClient();
 
-        /// <summary>
-        /// Gets or sets the username (HTTP basic authentication).
-        /// </summary>
-        /// <value>The username.</value>
-        public static string Username { get; set; }
-
-        /// <summary>
-        /// Gets or sets the password (HTTP basic authentication).
-        /// </summary>
-        /// <value>The password.</value>
-        public static string Password { get; set; }
-
-        /// <summary>
-        /// Gets or sets the API key based on the authentication name.
-        /// </summary>
-        /// <value>The API key.</value>
-        public static Dictionary<string, string> ApiKey = new Dictionary<string, string>();
-
-        /// <summary>
-        /// Gets or sets the prefix (e.g. Token) of the API key based on the authentication name.
-        /// </summary>
-        /// <value>The prefix of the API key.</value>
-        public static Dictionary<string, string> ApiKeyPrefix = new Dictionary<string, string>();
-
         private static string _tempFolderPath = Path.GetTempPath();
 
         /// <summary>
