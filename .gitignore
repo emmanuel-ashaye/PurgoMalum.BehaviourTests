@@ -2,7 +2,9 @@
 */obj/ 
 */bin/ 
 bin/ 
-obj/ 
+obj/
+DockerResults/
+TestResults/
 *.user 
 */*.user 
 .DS_Store 
