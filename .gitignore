@@ -1,0 +1,9 @@
+/.vs
+*/obj/ 
+*/bin/ 
+bin/ 
+obj/ 
+*.user 
+*/*.user 
+.DS_Store 
+*.feature.cs
