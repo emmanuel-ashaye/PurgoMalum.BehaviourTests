@@ -1,9 +1,10 @@
-﻿namespace PurgoMalum.ServiceClient.Model
+﻿using System;
+namespace PurgoMalum.ServiceClient.Model
 {
     public class SearchResponse
     {
-        public string Result { get; set; }
-
-        public string Error { get; set; }
+        public SearchResponse()
+        {
+        }
     }
 }

@@ -1,4 +1,0 @@
-FROM minty/alpine-mono-nuget 
-Run nuget install ReportUnit
-
-ENTRYPOINT ["tail", "-f", "/dev/null"]
