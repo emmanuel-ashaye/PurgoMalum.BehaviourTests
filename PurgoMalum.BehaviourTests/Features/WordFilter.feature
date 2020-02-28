@@ -1,4 +1,4 @@
-﻿Feature: ProfainWordFilter
+﻿Feature: WordFilter
 In order to avoid displaying content of profanity, obscenity and other unwanted text
 As a content provider
 I want to be a ble to filter such content
