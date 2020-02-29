@@ -56,7 +56,7 @@ namespace PurgoMalum.BehaviourTests.Features
             _searchContext.ReplacementList = replacementList;
         }
 
-        [StepDefinition("the output text is '(.*)'")]
+        [StepDefinition("the output (?:text|error) is '(.*)'")]
         public void TheOutputTextIs(string expectedOutputText)
         {
             var actualOutputText = _searchService.GetSearchResult(_searchContext.ResponseType, _searchContext.Text,

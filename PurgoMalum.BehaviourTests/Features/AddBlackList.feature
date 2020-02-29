@@ -16,7 +16,7 @@ Feature: Add black list
       And I specify the response type as 'json'
       And I add these words to the replacement list 'fool,freak,friend,foe,color,age,gender,sex,creed,kind,class'
      When I enter 'Dont be a fool, you freak'
-     Then the output text is 'User Black List Exceeds Limit of 10 Words.'
+     Then the output error is 'User Black List Exceeds Limit of 10 Words.'
 
 @Bug
   Scenario: Check black list allows numbers
@@ -25,6 +25,7 @@ Feature: Add black list
       And I add these words to the replacement list '01'
      When I enter '01 Dont be a fool, you freak'
      Then the output text is '** Dont be a fool, you freak'
+
 @Bug
   Scenario: Check black list allows special characters
     Given I call the word filter endpoint
@@ -32,3 +33,11 @@ Feature: Add black list
       And I add these words to the replacement list 'freaky_friday'
      When I enter 'It's freaky_friday'
      Then the output text is 'It's *************'
+
+@Bug
+  Scenario: Check filter is case-insensitive
+    Given I call the word filter endpoint
+      And I specify the response type as 'json'
+      And I add these words to the replacement list 'FOOL'
+     When I enter 'Dont be a fool, you freak'
+     Then the output text is 'Dont be a ****, you freak'

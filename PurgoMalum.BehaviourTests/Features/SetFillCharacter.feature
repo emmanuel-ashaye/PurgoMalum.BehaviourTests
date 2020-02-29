@@ -30,8 +30,11 @@ Feature: Set fill character
       And I specify the response type as 'plain'
       And I specify profain word replacement character as '<input>'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
-     Then the output text is '<result>'
+     Then the output error is '<result>'
   
     Examples: 
       | input | result                              | 
       | !     | Invalid User Replacement Characters | 
+      | #     | Invalid User Replacement Characters | 
+      | /     | Invalid User Replacement Characters | 
+      | \     | Invalid User Replacement Characters | 

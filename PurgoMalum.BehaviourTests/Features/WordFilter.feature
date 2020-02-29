@@ -28,5 +28,5 @@ I want to be able to filter such content
       And I specify the response type as 'json'
      When I enter 'It's been a bit of a great show, thanks to the team'
      Then the output text is 'It's been a bit of a great show, thanks to the team'
-  
 
+  
