@@ -29,7 +29,7 @@ I want to be able to filter such content
     | It's been a bit of a great show, thanks to the team      |
 
 @Example
-  Scenario Outline: 4. Specification examples
+  Scenario Outline: 4.  Examples from specification
     Given I call the word filter service
       And I specify the response type as '<input type>'
      When I enter 'this is some test input'
@@ -43,7 +43,7 @@ I want to be able to filter such content
     | containsprofanity | false                   |
 
 @Example
-  Scenario Outline: 5. Specification advanced examples
+  Scenario Outline: 5. Advanced examples from specification
     Given I call the word filter service
       And I specify the response type as '<input type>'
      When I enter 'this is some test input'
