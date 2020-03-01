@@ -5,7 +5,7 @@ Test Automation framework built to test functionality of https://www.purgomalum.
 This project was built using .Net Core 3.1 and Visual Studio for Mac IDE.
 In order to run tests without this software at least docker and docker-compose will be required.
 
-**How to run tests**
+**Steps**
 1. Pull the repository.
 
 2. In the root directory run this command to setup the test environment.
