@@ -69,6 +69,9 @@
     <SpecFlowFeatureFiles Update="Features\CheckProfanity.feature">
       <Visible>False</Visible>
     </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\FilterWords.feature">
+      <Visible>False</Visible>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Features\AddToProfainList.feature.cs">

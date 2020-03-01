@@ -7,21 +7,21 @@ using TechTalk.SpecFlow;
 namespace PurgoMalum.BehaviourTests.Features
 {
     [Binding]
-    public class ProfainWordFilterSteps
+    public class WordFilterSteps
     {
 
         private readonly SearchContext _searchContext;
 
         private readonly ISearchService _searchService;
 
-        public ProfainWordFilterSteps(ISearchService searchService, SearchContext searchContext)
+        public WordFilterSteps(ISearchService searchService, SearchContext searchContext)
         {
             _searchService = searchService;
             _searchContext = searchContext;
         }
 
-        [StepDefinition("I call the word filter endpoint")]
-        public void ICallTheWordFilterEndpoint()
+        [StepDefinition("I call the word filter service")]
+        public void ICallTheWordFilterService()
         {
         }
 
@@ -38,7 +38,7 @@ namespace PurgoMalum.BehaviourTests.Features
             _searchContext.Text = intputText;
         }
 
-        [StepDefinition(@"I specify profain word replacement as '(.*)'")]
+        [StepDefinition(@"I specify profain word replacement text as '(.*)'")]
         public void ISpecifyProfainWordReplacementAs(string replacementWord)
         {
             _searchContext.ReplacementWord = replacementWord;

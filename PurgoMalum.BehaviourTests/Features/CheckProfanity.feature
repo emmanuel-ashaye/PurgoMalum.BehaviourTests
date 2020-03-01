@@ -5,13 +5,13 @@ Feature: Check profanity
     I want to be able to check if text containes profanity
 	
   Scenario: 1. Check if sentence contains profanity
-    Given I call the word filter endpoint
+    Given I call the word filter service
       And I specify the response type as 'containsprofanity'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
      Then the output text is 'true'
 
   Scenario: 2. Check if sentence does not contains profanity
-    Given I call the word filter endpoint
+    Given I call the word filter service
       And I specify the response type as 'containsprofanity'
      When I enter 'It's a great day'
      Then the output text is 'false'

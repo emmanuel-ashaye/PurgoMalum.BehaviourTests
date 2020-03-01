@@ -5,16 +5,16 @@ Feature: Set fill text
 	I want to set the text to replace profain content
 	
   Scenario: 1. Check custom replacement text
-    Given I call the word filter endpoint
+    Given I call the word filter service
       And I specify the response type as 'json'
-      And I specify profain word replacement as 'blank'
+      And I specify profain word replacement text as 'blank'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
      Then the output text is 'It's been a bit of a blank show, no thanks to that blank'
 
   Scenario Outline: 2. Check supported replacement text with special characters
-    Given I call the word filter endpoint
+    Given I call the word filter service
       And I specify the response type as 'json'
-      And I specify profain word replacement as '<input>'
+      And I specify profain word replacement text as '<input>'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
      Then the output text is '<result>'
 
@@ -34,9 +34,9 @@ Feature: Set fill text
       | ()    | It's been a bit of a () show, no thanks to that () |
 
   Scenario Outline: 3. Check unsupported replacement text with special characters
-    Given I call the word filter endpoint
+    Given I call the word filter service
       And I specify the response type as 'json'
-      And I specify profain word replacement as '<input>'
+      And I specify profain word replacement text as '<input>'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
      Then the output error is 'Invalid User Replacement Text'
 
@@ -47,8 +47,8 @@ Feature: Set fill text
       | \     |
 
   Scenario: 4. Check custom replacement text limit
-    Given I call the word filter endpoint
+    Given I call the word filter service
       And I specify the response type as 'json'
-      And I specify profain word replacement as 'supercalifragilisticexpialidocious'
+      And I specify profain word replacement text as 'supercalifragilisticexpialidocious'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
      Then the output error is 'User Replacement Text Exceeds Limit of 20 Characters.'
