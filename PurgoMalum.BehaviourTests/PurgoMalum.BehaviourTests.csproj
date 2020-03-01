@@ -66,19 +66,13 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ProfanityChecker.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\CheckProfanity.feature">
+      <Visible>False</Visible>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Features\AddToProfainList.feature.cs">
       <DependentUpon>AddToProfainList.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Features\SetFillText.feature.cs">
-      <DependentUpon>SetFillText.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Features\SetFillCharacter.feature.cs">
-      <DependentUpon>SetFillCharacter.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Features\ProfanityChecker.feature.cs">
-      <DependentUpon>ProfanityChecker.feature</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>
