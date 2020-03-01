@@ -7,23 +7,23 @@ Feature: Add black list
   Scenario: 1. Check add to black list
     Given I call the word filter service
       And I specify the response type as 'json'
-      And I add these words to the replacement list 'fool,freak'
      When I enter 'Dont be a fool, you freak'
+      And I add these words to the replacement list 'fool,freak'
      Then the output text is 'Dont be a ****, you *****'
 
   Scenario: 2. Check black list maximum allowed words
     Given I call the word filter service
       And I specify the response type as 'json'
-      And I add these words to the replacement list 'fool,freak,friend,foe,color,age,gender,sex,creed,kind,class'
      When I enter 'Dont be a fool, you freak'
+      And I add these words to the replacement list 'fool,freak,friend,foe,color,age,gender,sex,creed,kind,class'
      Then the output error is 'User Black List Exceeds Limit of 10 Words.'
 
 @Bug
   Scenario Outline: 3. Check black list supported characters
     Given I call the word filter service
       And I specify the response type as 'json'
-      And I add these words to the replacement list '<add>'
      When I enter '<input>'
+      And I add these words to the replacement list '<add>'
      Then the output text is '<result>'
   
     Examples: 
@@ -36,8 +36,8 @@ Feature: Add black list
   Scenario Outline: 4. Check black list unsupported characters
     Given I call the word filter service
       And I specify the response type as 'json'
-      And I add these words to the replacement list '<add>'
      When I enter 'It's freaky friday'
+      And I add these words to the replacement list '<add>'
      Then the output error is 'Invalid Characters in User Black List'
   
     Examples: 
@@ -58,6 +58,6 @@ Feature: Add black list
   Scenario: 5. Check filter is case-insensitive
     Given I call the word filter service
       And I specify the response type as 'json'
-      And I add these words to the replacement list 'FOOL'
      When I enter 'Dont be a fool, you freak'
+      And I add these words to the replacement list 'FOOL'
      Then the output text is 'Dont be a ****, you freak'

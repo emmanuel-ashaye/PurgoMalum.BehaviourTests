@@ -7,15 +7,15 @@ Feature: Set fill text
   Scenario: 1. Check custom replacement text
     Given I call the word filter service
       And I specify the response type as 'json'
-      And I specify profain word replacement text as 'blank'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
+      And I specify profain word replacement text as 'blank'
      Then the output text is 'It's been a bit of a blank show, no thanks to that blank'
 
   Scenario Outline: 2. Check supported replacement text with special characters
     Given I call the word filter service
       And I specify the response type as 'json'
-      And I specify profain word replacement text as '<input>'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
+      And I specify profain word replacement text as '<input>'
      Then the output text is '<result>'
 
     Examples: 
@@ -36,8 +36,8 @@ Feature: Set fill text
   Scenario Outline: 3. Check unsupported replacement text with special characters
     Given I call the word filter service
       And I specify the response type as 'json'
-      And I specify profain word replacement text as '<input>'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
+      And I specify profain word replacement text as '<input>'
      Then the output error is 'Invalid User Replacement Text'
 
     Examples: 
@@ -49,6 +49,6 @@ Feature: Set fill text
   Scenario: 4. Check custom replacement text limit
     Given I call the word filter service
       And I specify the response type as 'json'
-      And I specify profain word replacement text as 'supercalifragilisticexpialidocious'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
+      And I specify profain word replacement text as 'supercalifragilisticexpialidocious'
      Then the output error is 'User Replacement Text Exceeds Limit of 20 Characters.'

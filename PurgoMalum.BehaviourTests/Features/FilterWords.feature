@@ -29,13 +29,27 @@ I want to be able to filter such content
     | It's been a bit of a great show, thanks to the team      |
 
 @Example
-  Scenario Outline: 3. Advanced examples
+  Scenario Outline: 4. Specification examples
     Given I call the word filter service
       And I specify the response type as '<input type>'
+     When I enter 'this is some test input'
+     Then the output text is '<result>'
+
+    Examples:
+    | input type        | result                  |
+    | xml               | this is some test input |
+    | json              | this is some test input |
+    | plain             | this is some test input |
+    | containsprofanity | false                   |
+
+@Example
+  Scenario Outline: 5. Specification advanced examples
+    Given I call the word filter service
+      And I specify the response type as '<input type>'
+     When I enter 'this is some test input'
+      And I add these words to the replacement list '<black list>'
       And I specify profain word replacement text as '<replacement word>'
       And I specify profain word replacement character as '<replacement character>'
-     And I add these words to the replacement list '<black list>'
-     When I enter 'this is some test input'
      Then the output text is '<result>'
 
     Examples:

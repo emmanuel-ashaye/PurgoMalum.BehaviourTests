@@ -7,15 +7,15 @@ Feature: Set fill character
   Scenario: 1. Check custom replacement character
     Given I call the word filter service
       And I specify the response type as 'json'
-      And I specify profain word replacement character as '_'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
+      And I specify profain word replacement character as '_'
      Then the output text is 'It's been a bit of a ____ show, no thanks to that _____'
 
   Scenario Outline: 2. Check supported replacement characters
     Given I call the word filter service
       And I specify the response type as 'json'
-      And I specify profain word replacement character as '<input>'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
+      And I specify profain word replacement character as '<input>'
      Then the output text is '<result>'
   
     Examples: 
@@ -30,8 +30,8 @@ Feature: Set fill character
   Scenario Outline: 3. Check unsupported replacement characters
     Given I call the word filter service
       And I specify the response type as 'plain'
-      And I specify profain word replacement character as '<input>'
      When I enter 'It's been a bit of a shit show, no thanks to that bitch'
+      And I specify profain word replacement character as '<input>'
      Then the output error is 'Invalid User Replacement Characters'
   
     Examples: 
