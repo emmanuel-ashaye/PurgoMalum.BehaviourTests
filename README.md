@@ -1,4 +1,9 @@
 # PurgoMalum.BehaviourTests
+**Introduction**
+Test Automation framework built to test functionality of https://www.purgomalum.com
+This project was built using .Net Core 3.1 and Visual Studio for Mac IDE.
+In order to run tests without this software at least docker and docker-compose will be required.
+
 **How to run tests**
 1. Pull the repository.
 
