@@ -29,7 +29,7 @@ I want to be able to filter such content
     | It's been a bit of a great show, thanks to the team      |
 
 @Example
-  Scenario Outline: 4.  Examples from specification
+  Scenario Outline: 4. Examples from specification
     Given I call the word filter service
       And I specify the response type as '<input type>'
      When I enter 'this is some test input'

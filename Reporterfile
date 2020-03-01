@@ -1,4 +1,8 @@
 FROM minty/alpine-mono-nuget 
+
+COPY CreateReport.sh .
+
 Run nuget install ReportUnit
+RUN nuget install ReportUnit -Version 1.5.0-beta1
 
 ENTRYPOINT ["tail", "-f", "/dev/null"]
