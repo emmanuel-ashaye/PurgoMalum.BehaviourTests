@@ -18,7 +18,7 @@ In order to run tests without this software at least docker and docker-compose w
 
 4. On completion, this command will generate a friendly report.
 
-`docker exec purge-test-reporter mono /ReportUnit.1.2.1/tools/ReportUnit.exe /DockerResults /DockerResults`
+`docker exec purge-test-reporter sh CreateReport.sh`
 
 5. Finally run this command to tear down the environment.
 
