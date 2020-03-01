@@ -24,4 +24,4 @@ In order to run tests without this software at least docker and docker-compose w
 
 `docker-compose down`
 
-6. To load the report in a browser, navegate to Docker Results folder in the repository and click on the index.html file.
+6. To load the report in a browser, navegate to DockerResults folder in the repository and click on the PurgeMalumTests.html file.
